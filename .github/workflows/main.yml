@@ -1,0 +1,43 @@
+name: Build Windows installer
+
+on:
+  workflow_dispatch:      # ruční spuštění z GitHub UI
+  push:
+    branches:
+      - main              # nebo 'master' podle tvého repa
+    paths:
+      - "column_comparer.py"
+      - "setup_cx.py"
+      - ".github/workflows/build-windows.yml"
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install cx-Freeze openpyxl
+
+      - name: Build EXE + MSI
+        run: |
+          python setup_cx.py build
+          python setup_cx.py bdist_msi
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: porovnavac-sloupcu-windows
+          path: |
+            dist/*.msi
+            build/**/*.exe
+          if-no-files-found: error
