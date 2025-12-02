@@ -28,11 +28,11 @@ shortcut_table = [
     (
         "DesktopShortcut",
         "DesktopFolder",
-        "Porovnávač sloupců",
-        "TARGETDIR",  # bezpečný Component_ → existuje vždy
-        "[TARGETDIR]PorovnavacSloupcu.exe",
+        "ColumnComparer",
+        "TARGETDIR",
+        "[TARGETDIR]ColumnComparer.exe",
         None,
-        "Porovnávač sloupců – ultra lite",
+        "ColumnComparer – ultra lite",
         None,
         None,
         None,
@@ -42,11 +42,11 @@ shortcut_table = [
     (
         "StartMenuShortcut",
         "StartMenuFolder",
-        "Porovnávač sloupců",
+        "ColumnComparer",
         "TARGETDIR",
-        "[TARGETDIR]PorovnavacSloupcu.exe",
+        "[TARGETDIR]ColumnComparer.exe",
         None,
-        "Porovnávač sloupců – ultra lite",
+        "ColumnComparer – ultra lite",
         None,
         None,
         None,
@@ -64,23 +64,23 @@ executables = [
     Executable(
         "column_comparer.py",
         base="gui",
-        target_name="PorovnavacSloupcu.exe",
-        # pokud máš ikonu, přidej soubor .ico a odkomentuj:
-        # icon="porovnavac.ico",
+        target_name="ColumnComparer.exe",
+        icon="ColumnComparer.ico",  # musí být ve stejné složce
     )
 ]
 
 # --------------------------- setup -----------------------------
 setup(
-    name="PorovnavacSloupcu",
+    name="ColumnComparer",
     version="1.0",
-    description="Ultra-lehký porovnávač sloupců (openpyxl + csv, bez pandas)",
+    description="ColumnComparer – ultra-lehký porovnávač sloupců (openpyxl + csv, bez pandas)",
     options={
         "build_exe": build_exe_options,
         "bdist_msi": {
             "data": msi_data,
+            # klidně si vygeneruj vlastní GUID, tohle můžeš nechat
             "upgrade_code": "{12345678-ABCD-4321-ABCD-1234567890FF}",
-            "initial_target_dir": r"[ProgramFilesFolder]\PorovnavacSloupcu",
+            "initial_target_dir": r"[ProgramFilesFolder]\ColumnComparer",
         },
     },
     executables=executables,
