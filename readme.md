@@ -3,7 +3,7 @@
 Univerzální porovnávač sloupců (Excel / CSV)
 ===========================================
 
-Tento projekt obsahuje GUI aplikaci pro Windows napsanou v Pythonu (Tkinter), která umožňuje:
+Tento eprojekt obsahuje GUI aplikaci pro Windows napsanou v Pythonu (Tkinter), která umožňuje:
 
 - načíst dvě tabulky (Excel / CSV / TXT),
 - vybrat sloupce kliknutím na hlavičku,
